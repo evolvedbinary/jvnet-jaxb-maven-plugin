@@ -75,7 +75,7 @@
     <jaxb.version>${jaxb23.version}</jaxb.version>
 
     <stax-ex.version>1.8.3</stax-ex.version>
-    <fastinfoset.version>1.2.18</fastinfoset.version>
+    <fastinfoset.version>2.0.0</fastinfoset.version>
     <rngom.version>201605</rngom.version>
 
     <dtd-parser.version>1.4.3</dtd-parser.version>
