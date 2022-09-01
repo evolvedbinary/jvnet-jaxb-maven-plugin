@@ -4,7 +4,7 @@
 	xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
 	xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
-	<jaxb:bindings schemaLocation="maven:com.helger.maven:maven-jaxb2-plugin-tests-p_o:jar::!/purchaseorder.xsd" node="/xs:schema">
+	<jaxb:bindings schemaLocation="maven:com.evolvedbinary.maven.jvnet:jaxb-maven-plugin-tests-p_o:jar::!/purchaseorder.xsd" node="/xs:schema">
 		<!--jaxb:schemaBindings>
 			<jaxb:package name="org.jvnet.jaxb2.maven2.tests.po"/>
 		</jaxb:schemaBindings-->		
