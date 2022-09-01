@@ -1,30 +1,29 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>com.helger</groupId>
-    <artifactId>parent-pom</artifactId>
-    <version>1.11.1</version>
-  </parent>
-  <groupId>com.helger.maven</groupId>
-  <artifactId>maven-jaxb2-plugin-project</artifactId>
-  <version>0.14.4-SNAPSHOT</version>
+
+  <groupId>com.evolvedbinary.maven.jvnet</groupId>
+  <artifactId>jaxb-maven-plugin-project</artifactId>
+  <version>0.16.0-SNAPSHOT</version>
   <packaging>pom</packaging>
-  <name>Maven JAXB 2.x Plugin Project</name>
-  <description>Maven2 plugin for JAXB 2.x XJC compiler to generate Java sources from XML Schemas.</description>
-  <url>https://github.com/highsource/maven-jaxb2-plugin</url>
+
+  <name>Maven JAXB Plugin Project</name>
+  <description>Maven plugin for JAXB 2.x and 3.x XJC compiler to generate Java sources from XML Schemas.</description>
+  <url>https://github.com/evolvedbinary/jvnet-jaxb-maven-plugin</url>
+
   <licenses>
     <license>
       <name>BSD-Style License</name>
-      <url>https://github.com/highsource/maven-jaxb2-plugin/blob/master/LICENSE</url>
+      <url>https://github.com/evolvedbinary/jvnet-jaxb-maven-plugin/blob/main/LICENSE</url>
       <distribution>repo</distribution>
-      <comments>Maven JAXB2 Plugin license is the 3-clause BSD license which is compatible with GPL. Maven JAXB2 Plugin license does not require you to include any acknowledgments for Maven JAXB2 Plugin in advertising materials for your software.</comments>
+      <comments>Maven JAXB Plugin license is the 3-clause BSD license which is compatible with GPL. Maven JAXB2 Plugin license does not require you to include any acknowledgments for Maven JAXB2 Plugin in advertising materials for your software.</comments>
     </license>
   </licenses>
+
   <inceptionYear>2006</inceptionYear>
   <scm>
-    <connection>scm:git:git@github.com:phax/maven-jaxb2-plugin.git</connection>
-    <developerConnection>scm:git:git@github.com:phax/maven-jaxb2-plugin.git</developerConnection>
-    <url>http://github.com/phax/maven-jaxb2-plugin</url>
+    <connection>scm:git:git@github.com:evolvedbinary/jvnet-jaxb-maven-plugin.git</connection>
+    <developerConnection>scm:git:git@github.com:evolvedbinary/jvnet-jaxb-maven-plugin.git</developerConnection>
+    <url>http://github.com/evolvedbinary/jvnet-jaxb-maven-plugin</url>
     <tag>HEAD</tag>
   </scm>
   <developers>
@@ -60,21 +59,30 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.version>2.2.1</maven.version>
+
+    <jaxb21.version>2.1</jaxb21.version>
+
     <jaxb22.version>2.2.11</jaxb22.version>
-    <!-- 2.3.3b02 does not work with the plugin anymore on Java 9+ -->
+    <jaxb22.xsom.version>20140925</jaxb22.xsom.version>
+
     <jaxb23.version>2.3.3</jaxb23.version>
+    <jaxb23.core.version>2.3.0.1</jaxb23.core.version>
+
     <jaxb30.version>3.0.0</jaxb30.version>
+
     <jaxb2-api.version>2.3.1</jaxb2-api.version>
     <jaxb3-api.version>3.0.0</jaxb3-api.version>
     <jaxb.version>${jaxb23.version}</jaxb.version>
+
     <stax-ex.version>1.8.3</stax-ex.version>
     <fastinfoset.version>1.2.18</fastinfoset.version>
-    <xsom.version>20140925</xsom.version>
+    <rngom.version>201605</rngom.version>
+
     <dtd-parser.version>1.4.3</dtd-parser.version>
     <istack.version>3.0.11</istack.version>
     <activation.version>1.2.0</activation.version>
     <jaxb2-basics.version>0.12.0</jaxb2-basics.version>
-    <maven.plugin.testing.version>2.1</maven.plugin.testing.version>
+    <maven.plugin.testing.version>3.3.0</maven.plugin.testing.version>
     <maven.plugin.plugin.version>3.6.0</maven.plugin.plugin.version>
     <slf4j.version>1.7.30</slf4j.version>
   </properties>
@@ -161,12 +169,6 @@
       </build>
     </profile>
   </profiles>
-	<!--distributionManagement>
-		<snapshotRepository>
-			<id>ossrh</id>
-			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
-		</snapshotRepository>
-	</distributionManagement-->
   <distributionManagement>
     <snapshotRepository>
       <id>ossrh</id>
@@ -179,32 +181,7 @@
   </distributionManagement>
   <dependencyManagement>
     <dependencies>
-      <dependency>
-        <groupId>org.glassfish.jaxb</groupId>
-        <artifactId>jaxb-runtime</artifactId>
-        <version>${jaxb.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>jakarta.xml.bind</groupId>
-        <artifactId>jakarta.xml.bind-api</artifactId>
-        <version>${jaxb3-api.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>com.sun.xml.bind</groupId>
-        <artifactId>jaxb-impl</artifactId>
-        <version>${jaxb30.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>com.sun.xml.bind</groupId>
-        <artifactId>jaxb-xjc</artifactId>
-        <version>${jaxb30.version}</version>
-      </dependency>
-			<!-- Start of jaxb-runtime dependencies -->
-      <dependency>
-        <groupId>javax.xml.bind</groupId>
-        <artifactId>jaxb-api</artifactId>
-        <version>${jaxb2-api.version}</version>
-      </dependency>
+      <!-- Start of jaxb-runtime dependencies -->
       <dependency>
         <groupId>org.glassfish.jaxb</groupId>
         <artifactId>txw2</artifactId>
@@ -225,24 +202,12 @@
         <artifactId>FastInfoset</artifactId>
         <version>${fastinfoset.version}</version>
       </dependency>
-			<!-- End of jaxb-runtime dependencies -->
+      <!-- End of jaxb-runtime dependencies -->
 
       <dependency>
-        <groupId>org.glassfish.jaxb</groupId>
-        <artifactId>jaxb-xjc</artifactId>
-        <version>${jaxb.version}</version>
-      </dependency>
-
-			<!-- Start jaxb-xjc dependencies -->
-      <dependency>
-        <groupId>com.sun.xsom</groupId>
-        <artifactId>xsom</artifactId>
-        <version>${xsom.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.glassfish.jaxb</groupId>
-        <artifactId>codemodel</artifactId>
-        <version>${jaxb.version}</version>
+        <groupId>javax.annotation</groupId>
+        <artifactId>javax.annotation-api</artifactId>
+        <version>1.3.2</version>
       </dependency>
       <dependency>
         <groupId>com.sun.xml.dtd-parser</groupId>
@@ -276,28 +241,28 @@
         <version>${jaxb.version}</version>
       </dependency>
       <dependency>
-        <groupId>com.helger.maven</groupId>
-        <artifactId>maven-jaxb2-plugin-core</artifactId>
+        <groupId>${project.groupId}</groupId>
+        <artifactId>jaxb-maven-plugin-core</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>
-        <groupId>com.helger.maven</groupId>
-        <artifactId>maven-jaxb2-plugin</artifactId>
+        <groupId>${project.groupId}</groupId>
+        <artifactId>jaxb2-maven-plugin</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>
-        <groupId>com.helger.maven</groupId>
-        <artifactId>maven-jaxb22-plugin</artifactId>
+        <groupId>${project.groupId}</groupId>
+        <artifactId>jaxb22-maven-plugin</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>
-        <groupId>com.helger.maven</groupId>
-        <artifactId>maven-jaxb23-plugin</artifactId>
+        <groupId>${project.groupId}</groupId>
+        <artifactId>jaxb23-maven-plugin</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>
-        <groupId>com.helger.maven</groupId>
-        <artifactId>maven-jaxb2-plugin-testing</artifactId>
+        <groupId>${project.groupId}</groupId>
+        <artifactId>jaxb-maven-plugin-testing</artifactId>
         <version>${project.version}</version>
       </dependency>
 			<!-- Maven plugin and api classes -->
@@ -355,7 +320,7 @@
       <dependency>
         <groupId>junit</groupId>
         <artifactId>junit</artifactId>
-        <version>4.13</version>
+        <version>4.13.1</version>
       </dependency>
       <dependency>
         <groupId>org.apache.maven.plugin-testing</groupId>
@@ -372,7 +337,7 @@
       <dependency>
         <groupId>org.codehaus.plexus</groupId>
         <artifactId>plexus-interpolation</artifactId>
-        <version>1.9</version>
+        <version>1.26</version>
         <scope>test</scope>
       </dependency>
       <dependency>
@@ -383,12 +348,12 @@
       <dependency>
         <groupId>org.codehaus.plexus</groupId>
         <artifactId>plexus-utils</artifactId>
-        <version>1.5.15</version>
+        <version>3.3.0</version>
       </dependency>
       <dependency>
         <groupId>org.apache.commons</groupId>
         <artifactId>commons-lang3</artifactId>
-        <version>3.10</version>
+        <version>3.11</version>
       </dependency>
 			<!-- SLF4J -->
       <dependency>
@@ -405,7 +370,7 @@
       <dependency>
         <groupId>com.helger</groupId>
         <artifactId>ph-commons-parent-pom</artifactId>
-        <version>9.4.1</version>
+        <version>9.5.4</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -419,6 +384,16 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-dependency-plugin</artifactId>
           <version>3.1.2</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>3.8.1</version>
+          <configuration>
+            <source>1.8</source>
+            <target>1.8</target>
+            <encoding>UTF-8</encoding>
+          </configuration>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -446,7 +421,32 @@
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>build-helper-maven-plugin</artifactId>
+          <version>3.2.0</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-antrun-plugin</artifactId>
           <version>3.0.0</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-assembly-plugin</artifactId>
+          <version>3.3.0</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-invoker-plugin</artifactId>
+          <version>3.2.1</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-deploy-plugin</artifactId>
+          <version>2.8.2</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-javadoc-plugin</artifactId>
+          <version>3.2.0</version>
         </plugin>
       </plugins>
     </pluginManagement>
@@ -461,7 +461,7 @@
               <goal>analyze-only</goal>
             </goals>
             <configuration>
-              <failOnWarning>false</failOnWarning>  <!-- TODO(AR) enable this once all transient dependency issues are resolved -->
+              <failOnWarning>true</failOnWarning>
             </configuration>
           </execution>
         </executions>

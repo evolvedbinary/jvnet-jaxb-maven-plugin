@@ -647,7 +647,7 @@ abstract class RawXJCMojo<O, XSA extends Annotation, XNA extends Annotation> ext
     }
     catch (final ClassNotFoundException cnfex)
     {
-      getLog ().warn (MessageFormat.format ("Class [{0}] could not be found. Processing bindings will probably faile.",
+      getLog ().warn (MessageFormat.format ("Class [{0}] could not be found. Processing bindings will probably fail.",
                                             packageInfoClassName),
                       cnfex);
     }

@@ -2,22 +2,25 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<artifactId>maven-jaxb2-plugin-sample-episode-b-maven</artifactId>
-	<name>Maven JAXB 2.x Plugin Sample [episode-b|maven]</name>
-	<packaging>jar</packaging>
+
 	<parent>
-		<groupId>com.helger.maven</groupId>
-		<artifactId>maven-jaxb2-plugin-sample-episode-maven</artifactId>
+		<groupId>com.evolvedbinary.maven.jvnet</groupId>
+		<artifactId>jaxb-maven-plugin-sample-episode-maven</artifactId>
 		<version>${project.version}</version>
 	</parent>
+
+	<artifactId>jaxb-maven-plugin-sample-episode-b-maven</artifactId>
+	<name>Maven JAXB 2.x Plugin Sample [episode-b|maven]</name>
+	<packaging>jar</packaging>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.glassfish.jaxb</groupId>
 			<artifactId>jaxb-runtime</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>com.helger.maven</groupId>
-			<artifactId>maven-jaxb2-plugin-sample-episode-a-maven</artifactId>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>jaxb-maven-plugin-sample-episode-a-maven</artifactId>
 			<version>${project.version}</version>
 			<scope>provided</scope>
 		</dependency>
@@ -26,14 +29,14 @@
 		<defaultGoal>test</defaultGoal>
 		<plugins>
 			<plugin>
-				<groupId>com.helger.maven</groupId>
-				<artifactId>maven-jaxb2-plugin</artifactId>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>jaxb2-maven-plugin</artifactId>
 				<configuration>
 					<extension>true</extension>
 					<episodes>
 						<episode>
-							<groupId>com.helger.maven</groupId>
-							<artifactId>maven-jaxb2-plugin-sample-episode-a-maven</artifactId>
+							<groupId>${project.groupId}</groupId>
+							<artifactId>jaxb-maven-plugin-sample-episode-a-maven</artifactId>
 						</episode>
 					</episodes>
 					<catalog>src/main/resources/catalog.cat</catalog>

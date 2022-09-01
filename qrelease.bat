@@ -37,8 +37,8 @@ rem pause
 
 echo Pushing version %1.
 rem pause
-git push origin master
-git push --tags origin master
+git push origin main
+git push --tags origin main
 echo Version %1 was pushed.
 rem pause
 
@@ -71,8 +71,8 @@ rem pause
 
 echo Pushing version %2.
 rem pause
-git push origin master
-git push --tags origin master
+git push origin main
+git push --tags origin main
 echo Version %2 was pushed.
 rem pause
 

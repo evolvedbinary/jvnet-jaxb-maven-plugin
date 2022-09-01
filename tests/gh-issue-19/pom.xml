@@ -3,24 +3,17 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>com.helger.maven</groupId>
-		<artifactId>maven-jaxb2-plugin-tests</artifactId>
+		<groupId>com.evolvedbinary.maven.jvnet</groupId>
+		<artifactId>jaxb-maven-plugin-tests</artifactId>
 		<version>0.12.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>maven-jaxb2-plugin-tests-gh-issue-19</artifactId>
+	<artifactId>jaxb-maven-plugin-tests-gh-issue-19</artifactId>
 	<packaging>pom</packaging>
 	<name>Maven JAXB 2.x Plugin Tests [GitHub Issue #19]</name>
 	<modules>
 		<module>a</module>
 		<module>b</module>
 	</modules>
-	<dependencies>
-		<dependency>
-			<groupId>org.glassfish.jaxb</groupId>
-			<artifactId>jaxb-runtime</artifactId>
-			<version>${jaxb.version}</version>
-		</dependency>
-	</dependencies>
 	<build>
 		<defaultGoal>test</defaultGoal>
 	</build>

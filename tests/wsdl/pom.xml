@@ -2,11 +2,11 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<artifactId>maven-jaxb2-plugin-tests-wsdl</artifactId>
+	<artifactId>jaxb-maven-plugin-tests-wsdl</artifactId>
 	<parent>
-		<groupId>com.helger.maven</groupId>
-		<artifactId>maven-jaxb2-plugin-tests</artifactId>
-		<version>0.13.2-SNAPSHOT</version>
+		<groupId>com.evolvedbinary.maven.jvnet</groupId>
+		<artifactId>jaxb-maven-plugin-tests</artifactId>
+		<version>0.14.4-SNAPSHOT</version>
 	</parent>
 	<packaging>jar</packaging>
 	<name>Maven JAXB 2.x Plugin Tests [wsdl]</name>
@@ -14,6 +14,7 @@
 		<dependency>
 			<groupId>org.glassfish.jaxb</groupId>
 			<artifactId>jaxb-runtime</artifactId>
+			<version>${jaxb.version}</version>
 		</dependency>
 		<!-- JUnit -->
 		<dependency>
@@ -25,8 +26,8 @@
 	<build>
 		<plugins>
 			<plugin>
-				<groupId>com.helger.maven</groupId>
-				<artifactId>maven-jaxb2-plugin</artifactId>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>jaxb2-maven-plugin</artifactId>
 				<configuration>
 					<schemas>
 						<schema>
@@ -38,4 +39,19 @@
 			</plugin>
 		</plugins>
 	</build>
+	<profiles>
+		<profile>
+			<id>jdk11.jaxb-api.2</id>
+			<activation>
+				<jdk>[11,)</jdk>
+			</activation>
+			<dependencies>
+				<dependency>
+					<groupId>javax.xml.bind</groupId>
+					<artifactId>jaxb-api</artifactId>
+					<version>${jaxb2-api.version}</version>
+				</dependency>
+			</dependencies>
+		</profile>
+	</profiles>
 </project>

@@ -1,27 +1,52 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.helger.maven</groupId>
-  <artifactId>maven-jaxb2-plugin</artifactId>
+
+  <parent>
+    <groupId>com.evolvedbinary.maven.jvnet</groupId>
+    <artifactId>jaxb-maven-plugin-project</artifactId>
+    <version>0.16.0-SNAPSHOT</version>
+  </parent>
+
+  <artifactId>jaxb2-maven-plugin</artifactId>
   <packaging>maven-plugin</packaging>
   <name>Maven JAXB 2.x Plugin</name>
-  <url>https://github.com/highsource/maven-jaxb2-plugin</url>
-  <parent>
-    <groupId>com.helger.maven</groupId>
-    <artifactId>maven-jaxb2-plugin-project</artifactId>
-    <version>0.14.4-SNAPSHOT</version>
-  </parent>
+
   <prerequisites>
     <maven>${maven.version}</maven>
   </prerequisites>
+
   <dependencies>
     <dependency>
-      <groupId>com.helger.maven</groupId>
-      <artifactId>maven-jaxb2-plugin-core</artifactId>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>jaxb-maven-plugin-core</artifactId>
+      <version>${project.version}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>javax.xml.bind</groupId>
+          <artifactId>jaxb-api</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
-      <groupId>com.helger.maven</groupId>
-      <artifactId>maven-jaxb23-plugin</artifactId>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>jaxb23-maven-plugin</artifactId>
+      <version>${project.version}</version>
     </dependency>
+
+    <dependency>
+      <groupId>org.glassfish.jaxb</groupId>
+      <artifactId>jaxb-xjc</artifactId>
+      <version>${jaxb23.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.glassfish.jaxb</groupId>
+      <artifactId>jaxb-runtime</artifactId>
+      <version>${jaxb23.version}</version>
+      <scope>runtime</scope>
+    </dependency>
+
+    <!-- Maven plugin and api classes -->
     <dependency>
       <groupId>org.apache.maven</groupId>
       <artifactId>maven-plugin-api</artifactId>
@@ -40,48 +65,35 @@
     </plugins>
   </reporting>
   <build>
-    <resources>
-      <resource>
-        <directory>src/main/resources</directory>
-        <filtering>true</filtering>
-      </resource>
-      <resource>
-        <directory>${project.build.directory}/generated-resources/jaxb-xjc-runtime</directory>
-        <filtering>false</filtering>
-      </resource>
-    </resources>
     <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-plugin-plugin</artifactId>
-      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-dependency-plugin</artifactId>
         <executions>
           <execution>
-            <id>unpack</id>
-            <phase>generate-resources</phase>
+            <id>analyze</id>
             <goals>
-              <goal>unpack</goal>
+              <goal>analyze-only</goal>
             </goals>
             <configuration>
-              <artifactItems>
-                <artifactItem>
-                  <groupId>org.glassfish.jaxb</groupId>
-                  <artifactId>jaxb-xjc</artifactId>
-                  <version>${jaxb23.version}</version>
-                  <classifier>sources</classifier>
-                  <type>jar</type>
-                  <overWrite>false</overWrite>
-                  <outputDirectory>${project.build.directory}/generated-resources/jaxb-xjc-runtime</outputDirectory>
-                  <includes>com/sun/tools/xjc/runtime/*.java</includes>
-                </artifactItem>
-              </artifactItems>
+              <ignoredUnusedDeclaredDependencies>
+                <ignoredUnusedDeclaredDependency>org.glassfish.jaxb:jaxb-runtime:jar:${jaxb23.version}</ignoredUnusedDeclaredDependency>
+              </ignoredUnusedDeclaredDependencies>
             </configuration>
           </execution>
         </executions>
       </plugin>
+      <!-- TODO(AR) causes a problem when running `mvn clean compile` -->
+      <!-- plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-plugin-plugin</artifactId>
+        <configuration>
+          <skipErrorNoDescriptorsFound>true</skipErrorNoDescriptorsFound>
+          <mojoDependencies>
+            <mojoDependency>${project.groupId}:maven-jaxb2-plugin</mojoDependency>
+          </mojoDependencies>
+        </configuration>
+      </plugin -->
     </plugins>
   </build>
 </project>

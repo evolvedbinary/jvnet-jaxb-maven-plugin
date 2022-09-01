@@ -1,42 +1,62 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-  <groupId>com.helger.maven</groupId>
-	<artifactId>maven-jaxb22-plugin</artifactId>
+
+	<parent>
+		<groupId>com.evolvedbinary.maven.jvnet</groupId>
+		<artifactId>jaxb-maven-plugin-project</artifactId>
+		<version>0.16.0-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>jaxb22-maven-plugin</artifactId>
 	<packaging>maven-plugin</packaging>
 	<name>Maven JAXB 2.2.x Plugin</name>
-	<parent>
-		<groupId>com.helger.maven</groupId>
-		<artifactId>maven-jaxb2-plugin-project</artifactId>
-		<version>0.14.4-SNAPSHOT</version>
-	</parent>
+
 	<prerequisites>
 		<maven>${maven.version}</maven>
 	</prerequisites>
+
 	<dependencies>
 		<dependency>
-  			<groupId>com.helger.maven</groupId>
-			<artifactId>maven-jaxb2-plugin-core</artifactId>
+  			<groupId>${project.groupId}</groupId>
+			<artifactId>jaxb-maven-plugin-core</artifactId>
+			<version>${project.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>javax.xml.bind</groupId>
+					<artifactId>jaxb-api</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
+
+		<dependency>
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>jaxb-api</artifactId>
+			<version>${jaxb22.version}</version>
+		</dependency>
+
 		<dependency>
 			<groupId>org.glassfish.jaxb</groupId>
-			<artifactId>jaxb-runtime</artifactId>
-			<version>${jaxb22.version}</version><!--$NO-MVN-MAN-VER$-->
+			<artifactId>jaxb-xjc</artifactId>
+			<version>${jaxb22.version}</version>
 		</dependency>
-		<!-- Start of jaxb-runtime dependencies -->
+
 		<dependency>
 			<groupId>org.glassfish.jaxb</groupId>
 			<artifactId>jaxb-core</artifactId>
 			<version>${jaxb22.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>javax.xml.bind</groupId>
-			<artifactId>jaxb-api</artifactId>
-			<version>${jaxb22.version}</version><!--$NO-MVN-MAN-VER$-->
-		</dependency>
+
 		<dependency>
 			<groupId>org.glassfish.jaxb</groupId>
+			<artifactId>jaxb-runtime</artifactId>
+			<version>${jaxb22.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+
+		<!-- dependency>
+			<groupId>org.glassfish.jaxb</groupId>
 			<artifactId>txw2</artifactId>
-			<version>${jaxb22.version}</version><!--$NO-MVN-MAN-VER$-->
+			<version>${jaxb22.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.sun.istack</groupId>
@@ -49,36 +69,47 @@
 		<dependency>
 			<groupId>com.sun.xml.fastinfoset</groupId>
 			<artifactId>FastInfoset</artifactId>
-		</dependency>
+		</dependency-->
 		<dependency>
 			<groupId>com.sun.activation</groupId>
 			<artifactId>javax.activation</artifactId>
+			<scope>runtime</scope>
 		</dependency>
 		<!-- End of jaxb-runtime dependencies -->
-		<dependency>
-			<groupId>org.glassfish.jaxb</groupId>
-			<artifactId>jaxb-xjc</artifactId>
-			<version>${jaxb22.version}</version><!--$NO-MVN-MAN-VER$-->
-		</dependency>
+
 		<!-- Start jaxb-xjc dependencies -->
 		<dependency>
 			<groupId>com.sun.xsom</groupId>
 			<artifactId>xsom</artifactId>
+			<version>${jaxb22.xsom.version}</version>
+			<scope>runtime</scope>
 		</dependency>
+
 		<dependency>
 			<groupId>org.glassfish.jaxb</groupId>
 			<artifactId>codemodel</artifactId>
+			<version>${jaxb22.version}</version>
 		</dependency>
-		<dependency>
+		<!-- dependency>
 			<groupId>com.sun.xml.dtd-parser</groupId>
 			<artifactId>dtd-parser</artifactId>
-		</dependency>
+		</dependency -->
 		<dependency>
 			<groupId>com.sun.istack</groupId>
-			<artifactId>istack-commons-tools</artifactId>
+			<artifactId>istack-commons-runtime</artifactId>
+			<scope>runtime</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>org.kohsuke.rngom</groupId>
+			<artifactId>rngom</artifactId>
+			<version>${rngom.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+
 		<!-- End of jaxb-xjc dependencies -->
 
+		<!-- Maven plugin and api classes -->
 		<dependency>
 			<groupId>org.apache.maven</groupId>
 			<artifactId>maven-plugin-api</artifactId>
@@ -90,6 +121,29 @@
 	</dependencies>
 	<build>
 		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>analyze</id>
+						<goals>
+							<goal>analyze-only</goal>
+						</goals>
+						<configuration>
+							<ignoredUnusedDeclaredDependencies>
+								<ignoredUnusedDeclaredDependency>javax.xml.bind:jaxb-api:jar:${jaxb22.version}</ignoredUnusedDeclaredDependency>
+								<ignoredUnusedDeclaredDependency>org.glassfish.jaxb:jaxb-core:jar:${jaxb22.version}</ignoredUnusedDeclaredDependency>
+								<ignoredUnusedDeclaredDependency>org.glassfish.jaxb:jaxb-runtime:jar:${jaxb22.version}</ignoredUnusedDeclaredDependency>
+								<ignoredUnusedDeclaredDependency>com.sun.istack:istack-commons-runtime:jar:${istack.version}</ignoredUnusedDeclaredDependency>
+								<ignoredUnusedDeclaredDependency>com.sun.xsom:xsom:jar:${jaxb22.xsom.version}</ignoredUnusedDeclaredDependency>
+								<ignoredUnusedDeclaredDependency>org.kohsuke.rngom:rngom:jar:${rngom.version}</ignoredUnusedDeclaredDependency>
+								<ignoredUnusedDeclaredDependency>com.sun.activation:javax.activation:jar:${activation.version}</ignoredUnusedDeclaredDependency>
+							</ignoredUnusedDeclaredDependencies>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-plugin-plugin</artifactId>

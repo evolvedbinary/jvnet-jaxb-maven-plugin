@@ -1,15 +1,17 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.helger.maven</groupId>
-  <artifactId>maven-jaxb2-plugin-samples</artifactId>
+
+  <parent>
+    <groupId>com.evolvedbinary.maven.jvnet</groupId>
+    <artifactId>jaxb-maven-plugin-project</artifactId>
+    <version>0.16.0-SNAPSHOT</version>
+  </parent>
+
+  <artifactId>jaxb-maven-plugin-samples</artifactId>
   <packaging>pom</packaging>
   <name>Maven JAXB 2.X Plugin Samples</name>
-  <parent>
-    <groupId>com.helger.maven</groupId>
-    <artifactId>maven-jaxb2-plugin-project</artifactId>
-    <version>0.14.2-SNAPSHOT</version>
-  </parent>
+
   <modules>
     <module>catalog</module>
     <module>dtd</module>
@@ -17,9 +19,11 @@
     <module>jaxbplugins</module>
     <module>po</module>
   </modules>
+
   <build>
     <plugins>
       <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-assembly-plugin</artifactId>
         <configuration>
           <descriptors>
@@ -38,6 +42,7 @@
         </executions>
       </plugin>
       <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-antrun-plugin</artifactId>
         <executions>
           <execution>
@@ -45,11 +50,11 @@
 						<!--phase>pre-integration-test</phase-->
             <phase>none</phase>
             <configuration>
-              <tasks>
+              <target>
                 <mkdir dir="target/test-maven-repository" />
                 <unzip src="target/${project.artifactId}-${project.version}-maven-src.zip"
                   dest="${basedir}/target/test-maven-assembly" />
-              </tasks>
+              </target>
             </configuration>
             <goals>
               <goal>run</goal>
@@ -58,8 +63,8 @@
         </executions>
       </plugin>
       <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-invoker-plugin</artifactId>
-        <version>2.0.0</version>
         <executions>
           <execution>
             <id>maven-integration-test</id>
