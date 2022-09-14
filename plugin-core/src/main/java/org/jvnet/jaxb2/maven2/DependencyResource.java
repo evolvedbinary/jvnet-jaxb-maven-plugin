@@ -109,19 +109,19 @@ public final class DependencyResource extends Dependency
 
     final String type;
     if (dependencyParts.size () > 2)
-      type = StringHelper.getNotEmpty (dependencyParts.get (2), null);
+      type = StringHelper.getNotEmpty (dependencyParts.get (2), (String) null);
     else
       type = null;
 
     final String classifier;
     if (dependencyParts.size () > 3)
-      classifier = StringHelper.getNotEmpty (dependencyParts.get (3), null);
+      classifier = StringHelper.getNotEmpty (dependencyParts.get (3), (String) null);
     else
       classifier = null;
 
     final String version;
     if (dependencyParts.size () > 4)
-      version = StringHelper.getNotEmpty (dependencyParts.get (4), null);
+      version = StringHelper.getNotEmpty (dependencyParts.get (4), (String) null);
     else
       version = null;
 

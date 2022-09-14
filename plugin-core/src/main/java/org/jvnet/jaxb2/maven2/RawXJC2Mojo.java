@@ -14,9 +14,9 @@
 
 package org.jvnet.jaxb2.maven2;
 
-import com.sun.xml.txw2.annotation.XmlNamespace;
-
 import javax.xml.bind.annotation.XmlSchema;
+
+import com.sun.xml.txw2.annotation.XmlNamespace;
 
 /**
  * Maven JAXB 2.x Mojo.

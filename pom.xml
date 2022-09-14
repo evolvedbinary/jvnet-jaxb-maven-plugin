@@ -39,6 +39,7 @@
       <id>philip</id>
       <name>Philip Helger</name>
       <email>philip(at)helger.com</email>
+      <timezone>CET</timezone>
     </developer>
     <developer>
       <id>adamretter</id>
@@ -60,18 +61,25 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.version>2.2.1</maven.version>
 
+    <!-- API versions -->
+    <jaxb2-api.version>2.3.1</jaxb2-api.version>
+    <jaxb3-api.version>3.0.1</jaxb3-api.version>
+    <jaxb4-api.version>4.0.0</jaxb4-api.version>
+
+    <!-- Implementation versions -->
     <jaxb21.version>2.1</jaxb21.version>
 
     <jaxb22.version>2.2.11</jaxb22.version>
     <jaxb22.xsom.version>20140925</jaxb22.xsom.version>
 
-    <jaxb23.version>2.3.3</jaxb23.version>
+    <jaxb23.version>2.3.6</jaxb23.version>
     <jaxb23.core.version>2.3.0.1</jaxb23.core.version>
 
-    <jaxb30.version>3.0.0</jaxb30.version>
+    <jaxb30.version>3.0.2</jaxb30.version>
 
-    <jaxb2-api.version>2.3.1</jaxb2-api.version>
-    <jaxb3-api.version>3.0.0</jaxb3-api.version>
+    <jaxb40.version>4.0.0</jaxb40.version>
+
+    <!-- Default version -->
     <jaxb.version>${jaxb23.version}</jaxb.version>
 
     <stax-ex.version>1.8.3</stax-ex.version>
@@ -84,7 +92,7 @@
     <jaxb2-basics.version>0.12.0</jaxb2-basics.version>
     <maven.plugin.testing.version>3.3.0</maven.plugin.testing.version>
     <maven.plugin.plugin.version>3.6.0</maven.plugin.plugin.version>
-    <slf4j.version>1.7.30</slf4j.version>
+    <slf4j.version>1.7.36</slf4j.version>
   </properties>
   <profiles>
     <profile>
@@ -320,7 +328,7 @@
       <dependency>
         <groupId>junit</groupId>
         <artifactId>junit</artifactId>
-        <version>4.13.1</version>
+        <version>4.13.2</version>
       </dependency>
       <dependency>
         <groupId>org.apache.maven.plugin-testing</groupId>
@@ -368,9 +376,9 @@
         <version>${jaxb2-basics.version}</version>
       </dependency>
       <dependency>
-        <groupId>com.helger</groupId>
+        <groupId>com.helger.commons</groupId>
         <artifactId>ph-commons-parent-pom</artifactId>
-        <version>9.5.4</version>
+        <version>10.2.0</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
