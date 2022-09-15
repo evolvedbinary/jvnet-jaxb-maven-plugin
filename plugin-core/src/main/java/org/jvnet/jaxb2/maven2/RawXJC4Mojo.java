@@ -12,9 +12,7 @@
  * limitations under the License.
  */
 
-package org.jvnet.mjiip.v_4_0;
-
-import org.jvnet.jaxb2.maven2.RawXJCMojo;
+package org.jvnet.jaxb2.maven2;
 
 import com.sun.xml.txw2.annotation.XmlNamespace;
 

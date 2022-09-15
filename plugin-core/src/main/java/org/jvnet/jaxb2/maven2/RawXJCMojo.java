@@ -37,6 +37,7 @@ import java.util.function.Function;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
+import javax.xml.XMLConstants;
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerException;
@@ -61,7 +62,6 @@ import org.apache.maven.project.artifact.InvalidDependencyVersionException;
 import org.apache.maven.settings.Proxy;
 import org.apache.maven.settings.Settings;
 import org.codehaus.plexus.util.FileUtils;
-import org.codehaus.plexus.util.IOUtil;
 import org.jvnet.jaxb2.maven2.net.CompositeURILastModifiedResolver;
 import org.jvnet.jaxb2.maven2.net.FileURILastModifiedResolver;
 import org.jvnet.jaxb2.maven2.net.URILastModifiedResolver;
@@ -86,16 +86,18 @@ import com.sun.org.apache.xml.internal.resolver.tools.CatalogResolver;
  * @author Adam Retter (adam@evolvedbinary.com)
  * @param <O>
  *        type
- * @param <XSA> XML Schema Annotation type
- * @param <XNA> XML Namespace Annotation type
+ * @param <XSA>
+ *        XML Schema Annotation type
+ * @param <XNA>
+ *        XML Namespace Annotation type
  */
-public abstract class RawXJCMojo<O, XSA extends Annotation, XNA extends Annotation> extends AbstractXJCMojo<O>
+abstract class RawXJCMojo <O, XSA extends Annotation, XNA extends Annotation> extends AbstractXJCMojo <O>
 {
   public static final String ADD_IF_EXISTS_TO_EPISODE_SCHEMA_BINDINGS_TRANSFORMATION_RESOURCE_NAME = "/" +
                                                                                                      RawXJCMojo.class.getPackage ()
-                                                                                                                      .getName ()
-                                                                                                                      .replace ('.',
-                                                                                                                                '/') +
+                                                                                                                     .getName ()
+                                                                                                                     .replace ('.',
+                                                                                                                               '/') +
                                                                                                      "/addIfExistsToEpisodeSchemaBindings.xslt";
 
   private Collection <Artifact> m_xjcPluginArtifacts;
@@ -589,33 +591,41 @@ public abstract class RawXJCMojo<O, XSA extends Annotation, XNA extends Annotati
     }
   }
 
-  protected abstract String getJaxbNamespaceUri();
-  protected abstract String getBindPackageInfoClassName();
-  protected abstract Class<XSA> getXmlSchemaAnnotationClass();
-  protected abstract String getXmlSchemaAnnotationNamespace(final XSA xmlSchemaAnnotation);
-  protected abstract Class<XNA> getXmlNamespaceAnnotationClass();
-  protected abstract String getXmlNamespaceAnnotationValue(final XNA xmlValueAnnotation);
+  protected abstract String getJaxbNamespaceUri ();
+
+  protected abstract String getBindPackageInfoClassName ();
+
+  protected abstract Class <XSA> getXmlSchemaAnnotationClass ();
+
+  protected abstract String getXmlSchemaAnnotationNamespace (final XSA xmlSchemaAnnotation);
+
+  protected abstract Class <XNA> getXmlNamespaceAnnotationClass ();
+
+  protected abstract String getXmlNamespaceAnnotationValue (final XNA xmlValueAnnotation);
 
   private void _setupBindInfoPackage ()
   {
-    final String packageInfoClassName = getBindPackageInfoClassName();
+    final String packageInfoClassName = getBindPackageInfoClassName ();
     try
     {
       final Class <?> packageInfoClass = Class.forName (packageInfoClassName);
-      final Class<XSA> xmlSchemaAnnotationClass = getXmlSchemaAnnotationClass();
-      final XSA xmlSchema = packageInfoClass.getAnnotation(xmlSchemaAnnotationClass);
+      final Class <XSA> xmlSchemaAnnotationClass = getXmlSchemaAnnotationClass ();
+      final XSA xmlSchema = packageInfoClass.getAnnotation (xmlSchemaAnnotationClass);
       if (xmlSchema == null)
       {
         getLog ().warn (MessageFormat.format ("Class [{0}] is missing the [{1}] annotation. Processing bindings will probably fail.",
-                                              packageInfoClassName, xmlSchemaAnnotationClass.getName()));
+                                              packageInfoClassName,
+                                              xmlSchemaAnnotationClass.getName ()));
       }
       else
       {
-        final String namespace = getXmlSchemaAnnotationNamespace(xmlSchema);
-        if (!getJaxbNamespaceUri().equals(namespace))
+        final String namespace = getXmlSchemaAnnotationNamespace (xmlSchema);
+        if (!getJaxbNamespaceUri ().equals (namespace))
         {
           getLog ().warn (MessageFormat.format ("Namespace of the [{0}] annotation is [{1}] and does not match [{2}]. Processing bindings will probably fail.",
-                                                namespace, xmlSchemaAnnotationClass, getJaxbNamespaceUri()));
+                                                namespace,
+                                                xmlSchemaAnnotationClass,
+                                                getJaxbNamespaceUri ()));
         }
       }
 
@@ -629,28 +639,31 @@ public abstract class RawXJCMojo<O, XSA extends Annotation, XNA extends Annotati
 
   }
 
-  protected abstract String getEpisodePackageInfoClassName();
+  protected abstract String getEpisodePackageInfoClassName ();
 
   private void _setupEpisodePackage ()
   {
-    final String packageInfoClassName = getEpisodePackageInfoClassName();
+    final String packageInfoClassName = getEpisodePackageInfoClassName ();
     try
     {
       final Class <?> packageInfoClass = Class.forName (packageInfoClassName);
-      final Class<XNA> xmlNamespaceAnnotationClass = getXmlNamespaceAnnotationClass();
-      final XNA xmlNamespace = packageInfoClass.getAnnotation(xmlNamespaceAnnotationClass);
+      final Class <XNA> xmlNamespaceAnnotationClass = getXmlNamespaceAnnotationClass ();
+      final XNA xmlNamespace = packageInfoClass.getAnnotation (xmlNamespaceAnnotationClass);
       if (xmlNamespace == null)
       {
         getLog ().warn (MessageFormat.format ("Class [{0}] is missing the [{1}] annotation. Processing bindings will probably fail.",
-                packageInfoClassName, xmlNamespaceAnnotationClass.getName ()));
+                                              packageInfoClassName,
+                                              xmlNamespaceAnnotationClass.getName ()));
       }
       else
       {
-        final String namespace = getXmlNamespaceAnnotationValue(xmlNamespace);
-        if (!getJaxbNamespaceUri().equals (namespace))
+        final String namespace = getXmlNamespaceAnnotationValue (xmlNamespace);
+        if (!getJaxbNamespaceUri ().equals (namespace))
         {
           getLog ().warn (MessageFormat.format ("Namespace of the [{0}] annotation is [{1}] and does not match [{2}]. Processing bindings will probably fail.",
-                  xmlNamespaceAnnotationClass.getName (), namespace, getJaxbNamespaceUri()));
+                                                xmlNamespaceAnnotationClass.getName (),
+                                                namespace,
+                                                getJaxbNamespaceUri ()));
         }
       }
 
@@ -677,11 +690,13 @@ public abstract class RawXJCMojo<O, XSA extends Annotation, XNA extends Annotati
                                             episodeFile));
       return;
     }
-    InputStream is = null;
-    try
+    try (
+        final InputStream is = getClass ().getResourceAsStream (ADD_IF_EXISTS_TO_EPISODE_SCHEMA_BINDINGS_TRANSFORMATION_RESOURCE_NAME))
     {
       final TransformerFactory transformerFactory = TransformerFactory.newInstance ();
-      is = getClass ().getResourceAsStream (ADD_IF_EXISTS_TO_EPISODE_SCHEMA_BINDINGS_TRANSFORMATION_RESOURCE_NAME);
+      transformerFactory.setAttribute (XMLConstants.ACCESS_EXTERNAL_DTD, "");
+      transformerFactory.setAttribute (XMLConstants.ACCESS_EXTERNAL_STYLESHEET, "");
+
       final Transformer addIfExistsToEpisodeSchemaBindingsTransformer = transformerFactory.newTransformer (new StreamSource (is));
       final DOMResult result = new DOMResult ();
       addIfExistsToEpisodeSchemaBindingsTransformer.transform (new StreamSource (episodeFile), result);
@@ -692,15 +707,11 @@ public abstract class RawXJCMojo<O, XSA extends Annotation, XNA extends Annotati
       getLog ().info (MessageFormat.format ("Episode file [{0}] was augmented with if-exists=\"true\" attributes.",
                                             episodeFile));
     }
-    catch (final TransformerException e)
+    catch (final TransformerException | IOException e)
     {
       throw new MojoExecutionException (MessageFormat.format ("Error augmenting the episode file [{0}] with if-exists=\"true\" attributes. Transformation failed with an unexpected error.",
                                                               episodeFile),
                                         e);
-    }
-    finally
-    {
-      IOUtil.close (is);
     }
   }
 
@@ -785,7 +796,6 @@ public abstract class RawXJCMojo<O, XSA extends Annotation, XNA extends Annotati
         if (getAddTestCompileSourceRoot ())
         {
           getProject ().addTestResource (resource);
-
         }
       }
     }
