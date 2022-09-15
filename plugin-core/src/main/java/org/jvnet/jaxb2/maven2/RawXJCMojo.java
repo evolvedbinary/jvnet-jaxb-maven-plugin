@@ -89,7 +89,7 @@ import com.sun.org.apache.xml.internal.resolver.tools.CatalogResolver;
  * @param <XSA> XML Schema Annotation type
  * @param <XNA> XML Namespace Annotation type
  */
-abstract class RawXJCMojo<O, XSA extends Annotation, XNA extends Annotation> extends AbstractXJCMojo<O>
+public abstract class RawXJCMojo<O, XSA extends Annotation, XNA extends Annotation> extends AbstractXJCMojo<O>
 {
   public static final String ADD_IF_EXISTS_TO_EPISODE_SCHEMA_BINDINGS_TRANSFORMATION_RESOURCE_NAME = "/" +
                                                                                                      RawXJCMojo.class.getPackage ()
