@@ -37,6 +37,11 @@
 			<artifactId>jaxb-xjc</artifactId>
 			<version>${jaxb30.version}</version>
 		</dependency>
+    <dependency>
+      <groupId>org.glassfish.jaxb</groupId>
+      <artifactId>txw2</artifactId>
+      <version>${jaxb30.version}</version>
+    </dependency>
 
 		<dependency>
 			<groupId>com.sun.xml.bind</groupId>
