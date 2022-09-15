@@ -90,8 +90,9 @@
 						</goals>
 						<configuration>
 							<ignoredUnusedDeclaredDependencies>
-								<!-- ignoredUnusedDeclaredDependency>org.glassfish.jaxb:codemodel:jar:${jaxb30.version}</ignoredUnusedDeclaredDependency-->
+							  <ignoredUnusedDeclaredDependency>jakarta.xml.bind:jakarta.xml.bind-api:jar:${jaxb3-api.version}</ignoredUnusedDeclaredDependency>
 								<ignoredUnusedDeclaredDependency>com.sun.xml.bind:jaxb-impl:jar:${jaxb30.version}</ignoredUnusedDeclaredDependency>
+                <ignoredUnusedDeclaredDependency>org.glassfish.jaxb:txw2:jar:${jaxb30.version}</ignoredUnusedDeclaredDependency>
 							</ignoredUnusedDeclaredDependencies>
 						</configuration>
 					</execution>
