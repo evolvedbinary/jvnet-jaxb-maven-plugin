@@ -5,14 +5,13 @@ import java.net.URISyntaxException;
 import java.net.URL;
 
 import org.apache.maven.plugin.logging.Log;
+import org.apache.xml.resolver.CatalogManager;
+import org.apache.xml.resolver.tools.CatalogResolver;
 import org.jvnet.jaxb2.maven2.DependencyResource;
 import org.jvnet.jaxb2.maven2.IDependencyResourceResolver;
 import org.jvnet.jaxb2.maven2.plugin.logging.NullLog;
 
-import com.helger.commons.string.ToStringGenerator;
-import com.sun.org.apache.xml.internal.resolver.CatalogManager;
-
-public class MavenCatalogResolver extends com.sun.org.apache.xml.internal.resolver.tools.CatalogResolver
+public class MavenCatalogResolver extends CatalogResolver
 {
   public static final String URI_SCHEME_MAVEN = "maven";
 
@@ -130,9 +129,17 @@ public class MavenCatalogResolver extends com.sun.org.apache.xml.internal.resolv
   @Override
   public String toString ()
   {
-    return new ToStringGenerator (this).append ("dependencyResourceResolver", dependencyResourceResolver)
-                                       .append ("catalogManager", catalogManager)
-                                       .append ("log", log)
-                                       .getToString ();
+    return "[" +
+           getClass ().getName () +
+           " - " +
+           "dependencyResourceResolver=" +
+           dependencyResourceResolver +
+           "; " +
+           "catalogManager=" +
+           catalogManager +
+           "; " +
+           "log=" +
+           log +
+           "]";
   }
 }

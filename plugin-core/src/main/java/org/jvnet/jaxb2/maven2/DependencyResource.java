@@ -1,13 +1,12 @@
 package org.jvnet.jaxb2.maven2;
 
 import java.text.MessageFormat;
+import java.util.Arrays;
 import java.util.List;
 
 import org.apache.maven.artifact.Artifact;
 import org.apache.maven.model.Dependency;
 import org.jvnet.jaxb2.maven2.resolver.tools.MavenCatalogResolver;
-
-import com.helger.commons.string.StringHelper;
 
 public final class DependencyResource extends Dependency
 {
@@ -47,7 +46,7 @@ public final class DependencyResource extends Dependency
     sb.append (getArtifactId ()).append (':');
     sb.append (getType () == null ? "" : getType ()).append (':');
     sb.append (getClassifier () == null ? "" : getClassifier ()).append (':');
-    sb.append (StringHelper.getNotNull (getVersion ()));
+    sb.append (getVersion () == null ? "" : getVersion ());
     sb.append ("!/");
     sb.append (getResource ());
     return sb.toString ();
@@ -71,9 +70,13 @@ public final class DependencyResource extends Dependency
            "}";
   }
 
+  private static String _getNotEmpty (final String s, final String def)
+  {
+    return s == null || s.isEmpty () ? def : s;
+  }
+
   public static DependencyResource valueOf (final String value) throws IllegalArgumentException
   {
-
     final String resourceDelimiter = "!/";
     final int resourceDelimiterPosition = value.indexOf (resourceDelimiter);
 
@@ -90,7 +93,7 @@ public final class DependencyResource extends Dependency
       resource = value.substring (resourceDelimiterPosition + resourceDelimiter.length ());
     }
 
-    final List <String> dependencyParts = StringHelper.getExploded (':', dependencyPart);
+    final List <String> dependencyParts = Arrays.asList (dependencyPart.split (":"));
 
     if (dependencyParts.size () < 2)
     {
@@ -109,19 +112,19 @@ public final class DependencyResource extends Dependency
 
     final String type;
     if (dependencyParts.size () > 2)
-      type = StringHelper.getNotEmpty (dependencyParts.get (2), (String) null);
+      type = _getNotEmpty (dependencyParts.get (2), (String) null);
     else
       type = null;
 
     final String classifier;
     if (dependencyParts.size () > 3)
-      classifier = StringHelper.getNotEmpty (dependencyParts.get (3), (String) null);
+      classifier = _getNotEmpty (dependencyParts.get (3), (String) null);
     else
       classifier = null;
 
     final String version;
     if (dependencyParts.size () > 4)
-      version = StringHelper.getNotEmpty (dependencyParts.get (4), (String) null);
+      version = _getNotEmpty (dependencyParts.get (4), (String) null);
     else
       version = null;
 

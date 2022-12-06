@@ -11,7 +11,6 @@ import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugins.annotations.LifecyclePhase;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.ResolutionScope;
-import org.jvnet.jaxb2.maven2.RawXJC3Mojo;
 import org.xml.sax.InputSource;
 
 import com.sun.codemodel.CodeWriter;
@@ -51,7 +50,6 @@ public class XJC40Mojo extends RawXJC3Mojo <Options>
     final Model model = loadModel (options);
     final Outline outline = generateCode (model);
     writeCode (outline);
-
   }
 
   protected Model loadModel (final Options options) throws MojoExecutionException

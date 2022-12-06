@@ -78,7 +78,7 @@
 
     <jaxb30.version>3.0.2</jaxb30.version>
 
-    <jaxb40.version>4.0.0</jaxb40.version>
+    <jaxb40.version>4.0.1</jaxb40.version>
 
     <!-- Default version -->
     <jaxb.version>${jaxb23.version}</jaxb.version>
@@ -178,6 +178,7 @@
       </build>
     </profile>
   </profiles>
+  
   <distributionManagement>
     <snapshotRepository>
       <id>ossrh</id>
@@ -188,6 +189,7 @@
       <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
     </repository>
   </distributionManagement>
+  
   <dependencyManagement>
     <dependencies>
       <!-- Start of jaxb-runtime dependencies -->
@@ -376,15 +378,9 @@
         <artifactId>jaxb2-basics-runtime</artifactId>
         <version>${jaxb2-basics.version}</version>
       </dependency>
-      <dependency>
-        <groupId>com.helger.commons</groupId>
-        <artifactId>ph-commons-parent-pom</artifactId>
-        <version>10.2.0</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
     </dependencies>
   </dependencyManagement>
+
   <build>
     <defaultGoal>install</defaultGoal>
     <pluginManagement>

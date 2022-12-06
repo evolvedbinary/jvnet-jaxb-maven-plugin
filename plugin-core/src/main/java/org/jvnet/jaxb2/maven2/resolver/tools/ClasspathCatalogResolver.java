@@ -3,8 +3,11 @@ package org.jvnet.jaxb2.maven2.resolver.tools;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.text.MessageFormat;
 
-public class ClasspathCatalogResolver extends com.sun.org.apache.xml.internal.resolver.tools.CatalogResolver
+import org.apache.xml.resolver.tools.CatalogResolver;
+
+public class ClasspathCatalogResolver extends CatalogResolver
 {
 
   public static final String URI_SCHEME_CLASSPATH = "classpath";
@@ -18,9 +21,10 @@ public class ClasspathCatalogResolver extends com.sun.org.apache.xml.internal.re
 
     if (result == null)
     {
-      // System.err.println(MessageFormat.format(
-      // "Could not resolve publicId [{0}], systemId [{1}]",
-      // publicId, systemId));
+      if (false)
+        System.err.println (MessageFormat.format ("Could not resolve publicId [{0}], systemId [{1}]",
+                                                  publicId,
+                                                  systemId));
       return null;
     }
 
@@ -30,23 +34,28 @@ public class ClasspathCatalogResolver extends com.sun.org.apache.xml.internal.re
       if (URI_SCHEME_CLASSPATH.equals (uri.getScheme ()))
       {
         final String schemeSpecificPart = uri.getSchemeSpecificPart ();
-        // System.out.println("Resolve [" + schemeSpecificPart + "].");
+        if (false)
+          System.out.println ("Resolve [" + schemeSpecificPart + "].");
 
         final URL resource = Thread.currentThread ().getContextClassLoader ().getResource (schemeSpecificPart);
         if (resource == null)
         {
-          // System.out.println("Returning [" + null + "].");
+          if (false)
+            System.out.println ("Returning [" + null + "].");
           return null;
         }
-        // System.out.println("Returning to [" + resource.toString()+ "].");
+        if (false)
+          System.out.println ("Returning to [" + resource.toString () + "].");
         return resource.toString ();
       }
-      // System.out.println("Returning to [" + result+ "].");
+      if (false)
+        System.out.println ("Returning to [" + result + "].");
       return result;
     }
     catch (final URISyntaxException urisex)
     {
-      // System.out.println("Returning to [" + result+ "].");
+      if (false)
+        System.out.println ("Returning to [" + result + "].");
       return result;
     }
   }

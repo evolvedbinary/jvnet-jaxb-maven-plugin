@@ -23,22 +23,11 @@
 	</properties>
 
 	<dependencies>
-		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>jaxb-maven-plugin-core</artifactId>
-			<version>${project.version}</version>
-			<exclusions>
-				<exclusion>
-					<groupId>javax.xml.bind</groupId>
-					<artifactId>jaxb-api</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
- 		<dependency>
-			<groupId>jakarta.xml.bind</groupId>
-			<artifactId>jakarta.xml.bind-api</artifactId>
-			<version>${jaxb4-api.version}</version>
-		</dependency>
+    <dependency>
+      <groupId>jakarta.xml.bind</groupId>
+      <artifactId>jakarta.xml.bind-api</artifactId>
+      <version>${jaxb4-api.version}</version>
+    </dependency>
     <dependency>
       <groupId>com.sun.xml.bind</groupId>
       <artifactId>jaxb-xjc</artifactId>
@@ -49,13 +38,28 @@
       <artifactId>txw2</artifactId>
       <version>${jaxb40.version}</version>
     </dependency>
-
-		<dependency>
-			<groupId>com.sun.xml.bind</groupId>
-			<artifactId>jaxb-impl</artifactId>
-			<version>${jaxb40.version}</version>
-			<scope>runtime</scope>
-		</dependency>
+    <dependency>
+      <groupId>com.sun.xml.bind</groupId>
+      <artifactId>jaxb-core</artifactId>
+      <version>${jaxb40.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.sun.xml.bind</groupId>
+      <artifactId>jaxb-impl</artifactId>
+      <version>${jaxb40.version}</version>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>jaxb-maven-plugin-core</artifactId>
+      <version>${project.version}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>javax.xml.bind</groupId>
+          <artifactId>jaxb-api</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
 
 		<!-- Maven plugin and api classes -->
 		<dependency>
@@ -67,6 +71,7 @@
 			<artifactId>maven-plugin-annotations</artifactId>
 		</dependency>
 	</dependencies>
+	
 	<build>
 		<plugins>
 		  <plugin>
@@ -89,6 +94,7 @@
 						<configuration>
 							<ignoredUnusedDeclaredDependencies>
                 <ignoredUnusedDeclaredDependency>jakarta.xml.bind:jakarta.xml.bind-api:jar:${jaxb4-api.version}</ignoredUnusedDeclaredDependency>
+                <ignoredUnusedDeclaredDependency>com.sun.xml.bind:jaxb-core:jar:${jaxb40.version}</ignoredUnusedDeclaredDependency>
                 <ignoredUnusedDeclaredDependency>com.sun.xml.bind:jaxb-impl:jar:${jaxb40.version}</ignoredUnusedDeclaredDependency>
                 <ignoredUnusedDeclaredDependency>org.glassfish.jaxb:txw2:jar:${jaxb40.version}</ignoredUnusedDeclaredDependency>
 							</ignoredUnusedDeclaredDependencies>

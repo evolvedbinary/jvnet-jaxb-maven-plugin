@@ -29,16 +29,17 @@
 		<dependency>
 			<groupId>jakarta.xml.bind</groupId>
 			<artifactId>jakarta.xml.bind-api</artifactId>
-			<version>${jaxb3-api.version}</version>
+      <version>${jaxb3-api.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>com.sun.org.apache.xml.internal</groupId>
-			<artifactId>resolver</artifactId>
-		</dependency>
+    <dependency>
+      <groupId>org.netbeans.external</groupId>
+      <artifactId>resolver-1.2</artifactId>
+      <version>RELEASE160</version>
+    </dependency>
 		<dependency>
 			<groupId>org.glassfish.jaxb</groupId>
 			<artifactId>txw2</artifactId>
@@ -46,10 +47,6 @@
 		<dependency>
 			<groupId>com.google.code.findbugs</groupId>
 			<artifactId>jsr305</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.helger.commons</groupId>
-			<artifactId>ph-commons</artifactId>
 		</dependency>
 
 		<!-- Maven plugin and api classes -->

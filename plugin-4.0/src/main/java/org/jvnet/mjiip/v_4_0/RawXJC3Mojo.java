@@ -12,21 +12,22 @@
  * limitations under the License.
  */
 
-package org.jvnet.jaxb2.maven2;
+package org.jvnet.mjiip.v_4_0;
+
+import org.jvnet.jaxb2.maven2.RawXJCMojo;
 
 import com.sun.xml.txw2.annotation.XmlNamespace;
 
 import jakarta.xml.bind.annotation.XmlSchema;
 
 /**
- * Maven JAXB 4.x Mojo.
+ * Maven JAXB 3.x Mojo.
  *
  * @author Adam Retter (adam@evolvedbinary.com)
- * @author Philip Helger
  * @param <O>
  *        type
  */
-public abstract class RawXJC4Mojo <O> extends RawXJCMojo <O, XmlSchema, XmlNamespace>
+public abstract class RawXJC3Mojo <O> extends RawXJCMojo <O, XmlSchema, XmlNamespace>
 {
   private static final String JAXB_NSURI = "https://jakarta.ee/xml/ns/jaxb";
 

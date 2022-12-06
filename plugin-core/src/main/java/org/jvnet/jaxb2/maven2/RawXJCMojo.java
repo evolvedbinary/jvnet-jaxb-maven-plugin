@@ -61,6 +61,8 @@ import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.project.artifact.InvalidDependencyVersionException;
 import org.apache.maven.settings.Proxy;
 import org.apache.maven.settings.Settings;
+import org.apache.xml.resolver.CatalogManager;
+import org.apache.xml.resolver.tools.CatalogResolver;
 import org.codehaus.plexus.util.FileUtils;
 import org.jvnet.jaxb2.maven2.net.CompositeURILastModifiedResolver;
 import org.jvnet.jaxb2.maven2.net.FileURILastModifiedResolver;
@@ -76,9 +78,6 @@ import org.xml.sax.EntityResolver;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
-import com.sun.org.apache.xml.internal.resolver.CatalogManager;
-import com.sun.org.apache.xml.internal.resolver.tools.CatalogResolver;
-
 /**
  * Abstract Maven JAXB Mojo.
  *
@@ -91,7 +90,7 @@ import com.sun.org.apache.xml.internal.resolver.tools.CatalogResolver;
  * @param <XNA>
  *        XML Namespace Annotation type
  */
-abstract class RawXJCMojo <O, XSA extends Annotation, XNA extends Annotation> extends AbstractXJCMojo <O>
+public abstract class RawXJCMojo <O, XSA extends Annotation, XNA extends Annotation> extends AbstractXJCMojo <O>
 {
   public static final String ADD_IF_EXISTS_TO_EPISODE_SCHEMA_BINDINGS_TRANSFORMATION_RESOURCE_NAME = "/" +
                                                                                                      RawXJCMojo.class.getPackage ()
@@ -174,9 +173,9 @@ abstract class RawXJCMojo <O, XSA extends Annotation, XNA extends Annotation> ex
 
   private void _setupSchemas () throws MojoExecutionException
   {
-    this.m_schemaURIs = _createSchemaURIs ();
-    this.m_resolvedSchemaURIs = _resolveURIs (getSchemaURIs ());
-    this.m_grammars = _createGrammars ();
+    m_schemaURIs = _createSchemaURIs ();
+    m_resolvedSchemaURIs = _resolveURIs (getSchemaURIs ());
+    m_grammars = _createGrammars ();
   }
 
   private List <URI> _createSchemaURIs () throws MojoExecutionException
@@ -1088,7 +1087,6 @@ abstract class RawXJCMojo <O, XSA extends Annotation, XNA extends Annotation> ex
     this.m_catalogURIs = createCatalogURIs ();
     this.m_resolvedCatalogURIs = _resolveURIs (getCatalogURIs ());
     _parseResolvedCatalogURIs ();
-
   }
 
   private EntityResolver m_entityResolver;

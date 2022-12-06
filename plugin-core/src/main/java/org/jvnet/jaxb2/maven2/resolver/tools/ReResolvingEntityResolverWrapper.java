@@ -6,11 +6,8 @@ import org.xml.sax.EntityResolver;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
-import com.helger.commons.string.ToStringGenerator;
-
 public class ReResolvingEntityResolverWrapper implements EntityResolver
 {
-
   private final EntityResolver entityResolver;
 
   public ReResolvingEntityResolverWrapper (final EntityResolver entityResolver)
@@ -46,6 +43,6 @@ public class ReResolvingEntityResolverWrapper implements EntityResolver
   @Override
   public String toString ()
   {
-    return new ToStringGenerator (this).append ("entityResolver", entityResolver).getToString ();
+    return "[" + getClass ().getName () + " - entityResolver=" + entityResolver + "]";
   }
 }
