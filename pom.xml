@@ -78,7 +78,7 @@
     <fastinfoset.version>2.0.0</fastinfoset.version>
     <rngom.version>201605</rngom.version>
 
-    <dtd-parser.version>1.4.3</dtd-parser.version>
+    <dtd-parser.version>1.4.5</dtd-parser.version>
     <istack.version>4.0.1</istack.version>
     <activation.version>1.2.0</activation.version>
     <jaxb2-basics.version>0.12.0</jaxb2-basics.version>
