@@ -27,6 +27,11 @@
 			<artifactId>jaxb-maven-plugin-testing</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>jaxb-api</artifactId>
+			<version>${jaxb2-api.version}</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>

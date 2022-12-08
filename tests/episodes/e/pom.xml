@@ -10,14 +10,45 @@
 	<artifactId>jaxb-maven-plugin-tests-episodes-e</artifactId>
 	<packaging>jar</packaging>
 	<name>Maven JAXB 2.x Plugin Tests [episodes:e]</name>
+	<dependencies>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>jaxb-maven-plugin-tests-episodes-a</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>jaxb-maven-plugin-tests-episodes-d</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+	</dependencies>
 	<build>
 		<defaultGoal>test</defaultGoal>
 		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>analyze</id>
+						<goals>
+							<goal>analyze-only</goal>
+						</goals>
+						<configuration>
+							<ignoredUnusedDeclaredDependencies>
+								<ignoredUnusedDeclaredDependency>com.evolvedbinary.maven.jvnet:jaxb-maven-plugin-tests-episodes-a:jar</ignoredUnusedDeclaredDependency>
+								<ignoredUnusedDeclaredDependency>com.evolvedbinary.maven.jvnet:jaxb-maven-plugin-tests-episodes-d:jar</ignoredUnusedDeclaredDependency>
+							</ignoredUnusedDeclaredDependencies>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 			<plugin>
 				<groupId>${project.groupId}</groupId>
 				<artifactId>jaxb22-maven-plugin</artifactId>
 				<configuration>
 					<extension>true</extension>
+					<strict>false</strict>
 					<!--episodes>
 						<episode>
 							<groupId>${project.groupId}</groupId>

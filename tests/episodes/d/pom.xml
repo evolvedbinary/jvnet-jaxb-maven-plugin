@@ -10,6 +10,18 @@
 	<artifactId>jaxb-maven-plugin-tests-episodes-d</artifactId>
 	<packaging>jar</packaging>
 	<name>Maven JAXB 2.x Plugin Tests [episodes:d]</name>
+	<dependencies>
+		<dependency>
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>jaxb-api</artifactId>
+			<version>${jaxb2-api.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>jaxb-maven-plugin-tests-episodes-a</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+	</dependencies>
 	<build>
 		<defaultGoal>test</defaultGoal>
 		<plugins>
@@ -18,10 +30,12 @@
 				<artifactId>jaxb22-maven-plugin</artifactId>
 				<configuration>
 					<extension>true</extension>
+					<strict>false</strict>
 					<episodes>
 						<episode>
 							<groupId>${project.groupId}</groupId>
 							<artifactId>jaxb-maven-plugin-tests-episodes-a</artifactId>
+							<version>${project.version}</version>
 						</episode>
 					</episodes>
 					<!--plugins>
