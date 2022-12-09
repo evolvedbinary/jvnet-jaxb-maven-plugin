@@ -12,6 +12,17 @@
 	<name>Maven JAXB 2.x Plugin Tests [episodes:c]</name>
 	<dependencies>
 		<dependency>
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>jaxb-api</artifactId>
+			<version>${jaxb2-api.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>jaxb-maven-plugin-tests-episodes-a</artifactId>
+			<version>${project.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
 			<groupId>${project.groupId}</groupId>
 			<artifactId>jaxb-maven-plugin-tests-episodes-b</artifactId>
 			<version>${project.version}</version>
@@ -32,6 +43,7 @@
 						</goals>
 						<configuration>
 							<ignoredUnusedDeclaredDependencies>
+								<ignoredUnusedDeclaredDependency>com.evolvedbinary.maven.jvnet:jaxb-maven-plugin-tests-episodes-a:jar</ignoredUnusedDeclaredDependency>
 								<ignoredUnusedDeclaredDependency>com.evolvedbinary.maven.jvnet:jaxb-maven-plugin-tests-episodes-b:jar</ignoredUnusedDeclaredDependency>
 							</ignoredUnusedDeclaredDependencies>
 						</configuration>
@@ -43,6 +55,7 @@
 				<artifactId>jaxb22-maven-plugin</artifactId>
 				<configuration>
 					<extension>true</extension>
+					<strict>false</strict>
 					<catalogs>
 						<catalog>
 							<dependencyResource>

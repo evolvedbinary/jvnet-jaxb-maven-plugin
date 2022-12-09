@@ -76,9 +76,27 @@
           </execution>
         </executions>
       </plugin>
-      <plugin>
+      <!-- TODO(AR) causes a problem when running `mvn clean compile` -->
+      <!-- plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-plugin-plugin</artifactId>
+        <configuration>
+          <skipErrorNoDescriptorsFound>true</skipErrorNoDescriptorsFound>
+          <mojoDependencies>
+            <mojoDependency>${project.groupId}:maven-jaxb2-plugin</mojoDependency>
+          </mojoDependencies>
+        </configuration>
+      </plugin -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <configuration>
+          <archive>
+            <manifestEntries>
+              <Add-Opens>java.base/java.lang</Add-Opens>
+            </manifestEntries>
+          </archive>
+        </configuration>
       </plugin>
     </plugins>
   </build>

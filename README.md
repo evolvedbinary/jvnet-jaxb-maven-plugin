@@ -1,6 +1,6 @@
-# JAXB Maven Plugin
+# JAXB Maven Plugin (jvnet)
 
-[![CI](https://github.com/evolvedbinary/maven-jaxb2-plugin/workflows/CI/badge.svg)](https://github.com/evolvedbinary/jvnet-jaxb-maven-plugin/actions?query=workflow%3ACI)
+[![CI](https://github.com/evolvedbinary/maven-jaxb2-plugin/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/evolvedbinary/jvnet-jaxb-maven-plugin/actions/workflows/ci.yml)
 [![Maven Central](https://img.shields.io/maven-central/v/com.evolvedbinary.maven.jvnet/jaxb-maven-plugin-project.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22com.evolvedbinary.maven.jvnet%22%20AND%20a:%22jaxb-maven-plugin-project%22)
 [![License](https://img.shields.io/badge/license-BSD%202-blue.svg)](https://opensource.org/licenses/BSD-2-Clause)
 
@@ -12,7 +12,7 @@ which is itself a fork on [highsource/maven-jaxb2-plugin](https://github.com/hig
 that was itself a fork of the [javaee/metro-maven-jaxb2-plugin](https://github.com/javaee/metro-maven-jaxb2-plugin) which originated
 from *java.net*.
 
-The plugin from which this was forked has been commonly known as the: *"jvmnet JAXB2 Plugin"*.
+The plugin from which this was forked has been commonly known as the: *"jvnet JAXB2 Plugin"*.
 
 The purpose of our fork is to add support for JAXB 3.
 

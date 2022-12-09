@@ -10,6 +10,13 @@
 	<artifactId>jaxb-maven-plugin-tests-MAVEN_JAXB2_PLUGIN-53-a</artifactId>
 	<packaging>jar</packaging>
 	<name>Maven JAXB 2.x Plugin Tests [MAVEN_JAXB2_PLUGIN-53:a]</name>
+	<dependencies>
+		<dependency>
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>jaxb-api</artifactId>
+			<version>${jaxb2-api.version}</version>
+		</dependency>
+	</dependencies>
 	<build>
 		<defaultGoal>test</defaultGoal>
 		<plugins>

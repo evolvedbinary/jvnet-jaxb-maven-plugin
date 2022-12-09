@@ -10,6 +10,13 @@
 	</parent>
 	<packaging>jar</packaging>
 	<name>Maven JAXB 2.x Plugin Tests [GitHub Issue #58]</name>
+	<dependencies>
+		<dependency>
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>jaxb-api</artifactId>
+			<version>${jaxb2-api.version}</version>
+		</dependency>
+	</dependencies>
 	<build>
 		<plugins>
 			<plugin>

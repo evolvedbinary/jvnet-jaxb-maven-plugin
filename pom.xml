@@ -83,12 +83,12 @@
     <!-- Default version -->
     <jaxb.version>${jaxb23.version}</jaxb.version>
 
-    <stax-ex.version>1.8.3</stax-ex.version>
-    <fastinfoset.version>1.2.18</fastinfoset.version>
+    <stax-ex.version>2.0.1</stax-ex.version>
+    <fastinfoset.version>2.0.0</fastinfoset.version>
     <rngom.version>201605</rngom.version>
 
-    <dtd-parser.version>1.4.3</dtd-parser.version>
-    <istack.version>3.0.11</istack.version>
+    <dtd-parser.version>1.4.5</dtd-parser.version>
+    <istack.version>4.0.1</istack.version>
     <activation.version>1.2.0</activation.version>
     <jaxb2-basics.version>0.12.0</jaxb2-basics.version>
     <maven.plugin.testing.version>3.3.0</maven.plugin.testing.version>
@@ -441,7 +441,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-invoker-plugin</artifactId>
-          <version>3.2.1</version>
+          <version>3.2.2</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -452,6 +452,16 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-javadoc-plugin</artifactId>
           <version>3.2.0</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-site-plugin</artifactId>
+          <version>3.12.1</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-project-info-reports-plugin</artifactId>
+          <version>3.4.1</version>
         </plugin>
       </plugins>
     </pluginManagement>
