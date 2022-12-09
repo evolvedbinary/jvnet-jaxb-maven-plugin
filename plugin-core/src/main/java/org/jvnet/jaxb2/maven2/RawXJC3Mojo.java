@@ -30,44 +30,37 @@ public abstract class RawXJC3Mojo <O> extends RawXJCMojo <O, XmlSchema, XmlNames
   private static final String JAXB_NSURI = "https://jakarta.ee/xml/ns/jaxb";
 
   @Override
-  protected String getJaxbNamespaceUri ()
-  {
+  protected String getJaxbNamespaceUri () {
     return JAXB_NSURI;
   }
 
   @Override
-  protected String getBindPackageInfoClassName ()
-  {
+  protected String getBindPackageInfoClassName () {
     return "com.sun.tools.xjc.reader.xmlschema.bindinfo.package-info";
   }
 
   @Override
-  protected Class <XmlSchema> getXmlSchemaAnnotationClass ()
-  {
+  protected Class <XmlSchema> getXmlSchemaAnnotationClass () {
     return XmlSchema.class;
   }
 
   @Override
-  protected String getXmlSchemaAnnotationNamespace (final XmlSchema xmlSchemaAnnotation)
-  {
+  protected String getXmlSchemaAnnotationNamespace (final XmlSchema xmlSchemaAnnotation) {
     return xmlSchemaAnnotation.namespace ();
   }
 
   @Override
-  protected String getEpisodePackageInfoClassName ()
-  {
+  protected String getEpisodePackageInfoClassName () {
     return "org.glassfish.jaxb.core.v2.schemagen.episode.package-info";
   }
 
   @Override
-  protected Class getXmlNamespaceAnnotationClass ()
-  {
+  protected Class getXmlNamespaceAnnotationClass () {
     return XmlNamespace.class;
   }
 
   @Override
-  protected String getXmlNamespaceAnnotationValue (final XmlNamespace xmlValueAnnotation)
-  {
+  protected String getXmlNamespaceAnnotationValue (final XmlNamespace xmlValueAnnotation) {
     return xmlValueAnnotation.value ();
   }
 }
