@@ -16,7 +16,6 @@ package org.jvnet.jaxb2.maven2;
 
 import com.sun.org.apache.xml.internal.resolver.CatalogManager;
 import com.sun.org.apache.xml.internal.resolver.tools.CatalogResolver;
-import com.sun.xml.txw2.annotation.XmlNamespace;
 import org.apache.maven.artifact.Artifact;
 import org.apache.maven.artifact.resolver.ArtifactNotFoundException;
 import org.apache.maven.artifact.resolver.ArtifactResolutionException;
@@ -42,7 +41,7 @@ import org.jvnet.jaxb2.maven2.util.ArtifactUtils;
 import org.jvnet.jaxb2.maven2.util.CollectionUtils;
 import org.jvnet.jaxb2.maven2.util.IOUtils;
 import org.jvnet.jaxb2.maven2.util.LocaleUtils;
-import org.sonatype.plexus.build.incremental.BuildContext;
+import org.codehaus.plexus.build.BuildContext;
 import org.xml.sax.EntityResolver;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;

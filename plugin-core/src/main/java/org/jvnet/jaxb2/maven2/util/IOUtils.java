@@ -14,7 +14,7 @@ import java.util.function.Function;
 import org.apache.maven.plugin.logging.Log;
 import org.codehaus.plexus.util.DirectoryScanner;
 import org.codehaus.plexus.util.Scanner;
-import org.sonatype.plexus.build.incremental.BuildContext;
+import org.codehaus.plexus.build.BuildContext;
 import org.xml.sax.InputSource;
 
 public class IOUtils

@@ -27,15 +27,6 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		<!-- dependency>
-			<groupId>jakarta.xml.bind</groupId>
-			<artifactId>jakarta.xml.bind-api</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.sun.xml.bind</groupId>
-			<artifactId>jaxb-impl</artifactId>
-			<scope>runtime</scope>
-		</dependency -->
 		<dependency>
 			<groupId>com.sun.xml.bind</groupId>
 			<artifactId>jaxb-xjc</artifactId>
@@ -49,32 +40,22 @@
 			<scope>runtime</scope>
 		</dependency>
 
-		<!-- dependency>
-			<groupId>org.glassfish.jaxb</groupId>
-			<artifactId>codemodel</artifactId>
-			<version>${jaxb30.version}</version>
-		</dependency -->
-
-		<!-- dependency>
-			<groupId>jakarta.activation</groupId>
-			<artifactId>jakarta.activation-api</artifactId>
-			<version>2.0.0</version>
-		</dependency -->
-
 		<!-- Maven plugin and api classes -->
 		<dependency>
 			<groupId>org.apache.maven</groupId>
-			<artifactId>maven-plugin-api</artifactId>
+			<artifactId>maven-core</artifactId>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.maven.plugin-tools</groupId>
 			<artifactId>maven-plugin-annotations</artifactId>
+			<scope>provided</scope>
 		</dependency>
-		<!-- dependency>
-			<groupId>org.apache.maven.plugin-testing</groupId>
-			<artifactId>maven-plugin-testing-harness</artifactId>
-			<scope>test</scope>
-		</dependency -->
+		<dependency>
+			<groupId>org.apache.maven</groupId>
+			<artifactId>maven-plugin-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
@@ -89,7 +70,7 @@
 						</goals>
 						<configuration>
 							<ignoredUnusedDeclaredDependencies>
-								<!-- ignoredUnusedDeclaredDependency>org.glassfish.jaxb:codemodel:jar:${jaxb30.version}</ignoredUnusedDeclaredDependency-->
+								<ignoredUnusedDeclaredDependency>org.apache.maven:maven-core:jar:${maven.version}</ignoredUnusedDeclaredDependency>
 								<ignoredUnusedDeclaredDependency>com.sun.xml.bind:jaxb-impl:jar:${jaxb30.version}</ignoredUnusedDeclaredDependency>
 							</ignoredUnusedDeclaredDependencies>
 						</configuration>

@@ -35,8 +35,8 @@ import org.apache.maven.project.artifact.MavenMetadataSource;
 import org.apache.maven.settings.Settings;
 import org.jvnet.jaxb2.maven2.util.ArtifactUtils;
 import org.jvnet.jaxb2.maven2.util.IOUtils;
-import org.sonatype.plexus.build.incremental.BuildContext;
-import org.sonatype.plexus.build.incremental.DefaultBuildContext;
+import org.codehaus.plexus.build.BuildContext;
+import org.codehaus.plexus.build.DefaultBuildContext;
 
 public abstract class AbstractXJCMojo<O> extends AbstractMojo implements IDependencyResourceResolver
 {
@@ -1086,7 +1086,7 @@ public abstract class AbstractXJCMojo<O> extends AbstractMojo implements IDepend
   private MavenProjectBuilder mavenProjectBuilder;
 
   @Component
-  private BuildContext buildContext = new DefaultBuildContext ();
+  private BuildContext buildContext = new DefaultBuildContext (new org.sonatype.plexus.build.incremental.DefaultBuildContext());
 
   /**
    * Plugin artifacts.

@@ -36,6 +36,9 @@
 							<ignoredUnusedDeclaredDependencies>
 								<ignoredUnusedDeclaredDependency>javax.annotation:javax.annotation-api:jar</ignoredUnusedDeclaredDependency>
 							</ignoredUnusedDeclaredDependencies>
+							<ignoredNonTestScopedDependencies>
+								<ignoredNonTestScopedDependency>javax.xml.bind:jaxb-api:jar</ignoredNonTestScopedDependency>
+							</ignoredNonTestScopedDependencies>
 						</configuration>
 					</execution>
 				</executions>

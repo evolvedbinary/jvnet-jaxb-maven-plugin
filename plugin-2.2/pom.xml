@@ -53,23 +53,6 @@
 			<scope>runtime</scope>
 		</dependency>
 
-		<!-- dependency>
-			<groupId>org.glassfish.jaxb</groupId>
-			<artifactId>txw2</artifactId>
-			<version>${jaxb22.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.sun.istack</groupId>
-			<artifactId>istack-commons-runtime</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.jvnet.staxex</groupId>
-			<artifactId>stax-ex</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.sun.xml.fastinfoset</groupId>
-			<artifactId>FastInfoset</artifactId>
-		</dependency-->
 		<dependency>
 			<groupId>com.sun.activation</groupId>
 			<artifactId>javax.activation</artifactId>
@@ -90,10 +73,7 @@
 			<artifactId>codemodel</artifactId>
 			<version>${jaxb22.version}</version>
 		</dependency>
-		<!-- dependency>
-			<groupId>com.sun.xml.dtd-parser</groupId>
-			<artifactId>dtd-parser</artifactId>
-		</dependency -->
+
 		<dependency>
 			<groupId>com.sun.istack</groupId>
 			<artifactId>istack-commons-runtime</artifactId>
@@ -106,17 +86,23 @@
 			<version>${rngom.version}</version>
 			<scope>runtime</scope>
 		</dependency>
-
 		<!-- End of jaxb-xjc dependencies -->
 
 		<!-- Maven plugin and api classes -->
 		<dependency>
 			<groupId>org.apache.maven</groupId>
-			<artifactId>maven-plugin-api</artifactId>
+			<artifactId>maven-core</artifactId>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.maven.plugin-tools</groupId>
 			<artifactId>maven-plugin-annotations</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.maven</groupId>
+			<artifactId>maven-plugin-api</artifactId>
+			<scope>provided</scope>
 		</dependency>
 	</dependencies>
 	<build>
@@ -132,6 +118,7 @@
 						</goals>
 						<configuration>
 							<ignoredUnusedDeclaredDependencies>
+								<ignoredUnusedDeclaredDependency>org.apache.maven:maven-core:jar:${maven.version}</ignoredUnusedDeclaredDependency>
 								<ignoredUnusedDeclaredDependency>javax.xml.bind:jaxb-api:jar:${jaxb22.version}</ignoredUnusedDeclaredDependency>
 								<ignoredUnusedDeclaredDependency>org.glassfish.jaxb:jaxb-core:jar:${jaxb22.version}</ignoredUnusedDeclaredDependency>
 								<ignoredUnusedDeclaredDependency>org.glassfish.jaxb:jaxb-runtime:jar:${jaxb22.version}</ignoredUnusedDeclaredDependency>
