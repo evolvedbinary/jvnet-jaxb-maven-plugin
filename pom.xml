@@ -337,7 +337,7 @@
       <dependency>
         <groupId>org.codehaus.plexus</groupId>
         <artifactId>plexus-interpolation</artifactId>
-        <version>1.26</version>
+        <version>1.28</version>
         <scope>test</scope>
       </dependency>
       <dependency>
