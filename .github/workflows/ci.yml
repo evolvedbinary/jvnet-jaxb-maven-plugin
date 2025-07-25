@@ -23,7 +23,13 @@ jobs:
           distribution: liberica
           java-version: ${{ matrix.java }}
           cache: maven
-      - name: Maven Build
+      - name: "Maven Build (Java: ${{ matrix.java }})"
         run: mvn -V -B -DskipTests=true "-Dmaven.javadoc.skip=true" install
-      - name: Maven Test
+      - name: "Maven Test (Java: ${{ matrix.java }})"
+        if: ${{ matrix.java  == '8' || matrix.java == '11' }}
+        run: mvn -V -B verify -Ptests
+      - name: "Maven Test (Java: ${{ matrix.java }})"
+        if: ${{ matrix.java  == '17' || matrix.java == '21' }}
+        env:
+          MAVEN_OPTS: "--add-opens=java.base/java.lang=ALL-UNNAMED"
         run: mvn -V -B verify -Ptests
