@@ -74,7 +74,7 @@
     <jaxb3-api.version>3.0.0</jaxb3-api.version>
     <jaxb.version>${jaxb23.version}</jaxb.version>
 
-    <stax-ex.version>2.0.1</stax-ex.version>
+    <stax-ex.version>2.1.0</stax-ex.version>
     <fastinfoset.version>2.0.0</fastinfoset.version>
     <rngom.version>201605</rngom.version>
 
