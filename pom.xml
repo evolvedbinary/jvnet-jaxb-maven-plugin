@@ -71,7 +71,7 @@
     <jaxb30.version>3.0.1</jaxb30.version>
 
     <jaxb2-api.version>2.3.1</jaxb2-api.version>
-    <jaxb3-api.version>3.0.1</jaxb3-api.version>
+    <jaxb3-api.version>4.0.2</jaxb3-api.version>
     <jaxb.version>${jaxb23.version}</jaxb.version>
 
     <stax-ex.version>2.1.0</stax-ex.version>
