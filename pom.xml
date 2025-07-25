@@ -20,12 +20,14 @@
   </licenses>
 
   <inceptionYear>2006</inceptionYear>
+
   <scm>
     <connection>scm:git:git@github.com:evolvedbinary/jvnet-jaxb-maven-plugin.git</connection>
     <developerConnection>scm:git:git@github.com:evolvedbinary/jvnet-jaxb-maven-plugin.git</developerConnection>
     <url>http://github.com/evolvedbinary/jvnet-jaxb-maven-plugin</url>
     <tag>HEAD</tag>
   </scm>
+
   <developers>
     <developer>
       <id>lexi</id>
@@ -48,6 +50,7 @@
       <timezone>CET</timezone>
     </developer>
   </developers>
+
   <modules>
     <module>plugin-core</module>
     <module>plugin-2.2</module>
@@ -56,6 +59,7 @@
     <module>plugin</module>
     <module>testing</module>
   </modules>
+
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.version>3.9.0</maven.version>
@@ -84,7 +88,9 @@
     <jaxb2-basics.version>0.12.0</jaxb2-basics.version>
     <slf4j.version>1.7.36</slf4j.version>
   </properties>
+
   <profiles>
+
     <profile>
       <id>samples</id>
       <activation>
@@ -97,6 +103,7 @@
         <module>dist</module>
       </modules>
     </profile>
+
     <profile>
       <id>tests</id>
       <activation>
@@ -108,6 +115,7 @@
         <module>tests</module>
       </modules>
     </profile>
+
     <profile>
       <id>all</id>
       <activation>
@@ -121,6 +129,7 @@
         <module>tests</module>
       </modules>
     </profile>
+
     <profile>
       <id>sonatype-oss-release</id>
       <build>
@@ -167,6 +176,7 @@
       </build>
     </profile>
   </profiles>
+
   <distributionManagement>
     <snapshotRepository>
       <id>ossrh</id>
@@ -177,6 +187,7 @@
       <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
     </repository>
   </distributionManagement>
+
   <dependencyManagement>
     <dependencies>
       <!-- Start of jaxb-runtime dependencies -->
@@ -372,6 +383,7 @@
       </dependency>
     </dependencies>
   </dependencyManagement>
+
   <build>
     <defaultGoal>install</defaultGoal>
     <pluginManagement>
@@ -479,4 +491,5 @@
       </plugin>
     </plugins>
   </build>
+
 </project>
