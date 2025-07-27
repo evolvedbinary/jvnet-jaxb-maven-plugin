@@ -61,7 +61,10 @@
   </modules>
 
   <properties>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
     <maven.version>3.9.0</maven.version>
 
     <jaxb21.version>2.1</jaxb21.version>
@@ -73,6 +76,8 @@
     <jaxb23.core.version>2.3.0.1</jaxb23.core.version>
 
     <jaxb30.version>3.0.1</jaxb30.version>
+
+    <jaxb40.version>4.0.5</jaxb40.version>
 
     <jaxb2-api.version>2.3.1</jaxb2-api.version>
     <jaxb3-api.version>3.0.1</jaxb3-api.version>
@@ -90,6 +95,16 @@
   </properties>
 
   <profiles>
+
+    <profile>
+      <id>jaxb-4.0</id>
+      <activation>
+        <jdk>[11,)</jdk>
+      </activation>
+      <modules>
+        <module>plugin-4.0</module>
+      </modules>
+    </profile>
 
     <profile>
       <id>samples</id>
@@ -127,6 +142,7 @@
         <module>dist</module>
         <module>samples</module>
         <module>tests</module>
+        <module>plugin-4.0</module>
       </modules>
     </profile>
 
@@ -386,8 +402,14 @@
 
   <build>
     <defaultGoal>install</defaultGoal>
+
     <pluginManagement>
       <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-enforcer-plugin</artifactId>
+          <version>3.5.0</version>
+        </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-dependency-plugin</artifactId>
@@ -398,8 +420,8 @@
           <artifactId>maven-compiler-plugin</artifactId>
           <version>3.14.0</version>
           <configuration>
-            <source>1.8</source>
-            <target>1.8</target>
+            <source>${maven.compiler.source}</source>
+            <target>${maven.compiler.target}</target>
             <encoding>UTF-8</encoding>
           </configuration>
         </plugin>
@@ -474,6 +496,25 @@
       </plugins>
     </pluginManagement>
     <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-enforcer-plugin</artifactId>
+        <configuration>
+          <rules>
+            <requireJavaVersion>
+              <version>${maven.compiler.target}</version>
+            </requireJavaVersion>
+          </rules>
+        </configuration>
+        <executions>
+          <execution>
+            <id>enforce-versions</id>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-dependency-plugin</artifactId>

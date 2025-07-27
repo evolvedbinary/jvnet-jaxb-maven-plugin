@@ -4,7 +4,7 @@
 [![Maven Central](https://img.shields.io/maven-central/v/com.evolvedbinary.maven.jvnet/jaxb-maven-plugin-project.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22com.evolvedbinary.maven.jvnet%22%20AND%20a:%22jaxb-maven-plugin-project%22)
 [![License](https://img.shields.io/badge/license-BSD%202-blue.svg)](https://opensource.org/licenses/BSD-2-Clause)
 
-* **Supports JAXB 2 and JAXB 3.**
+* **Supports JAXB 2, JAXB 3, and JAXB 4.**
 
 ## Provenance
 This is a fork of the JAXB2 Maven Plugin from [phax/maven-jaxb2-plugin](https://github.com/phax/maven-jaxb2-plugin),
@@ -14,7 +14,7 @@ from *java.net*.
 
 The plugin from which this was forked has been commonly known as the: *"jvnet JAXB2 Plugin"*.
 
-The purpose of our fork is to add support for JAXB 3.
+The purpose of our fork is to add support for JAXB 3 and 4.
 
 ### Notes on Licensing
 The forks from which this project came claim that it is licensed under a [BSD-2 Clause](https://opensource.org/licenses/BSD-2-Clause) license.
@@ -39,6 +39,32 @@ compiling XML Schemas (as well as WSDL, DTDs, RELAX NG) into Java classes in Mav
 * Put your schemas (`*.xsd`) and bindings (`*.xjb`) into the `src/main/resources` folder.
 * Add the plugin to your `pom.xml`:
 
+### For JAXB 4:
+```xml
+<project ...>
+  ...
+  <build>
+    <plugins>
+      ...
+      <plugin>
+        <groupId>com.evolvedbinary.maven.jvnet</groupId>
+        <artifactId>jaxb40-maven-plugin</artifactId>
+        <version>0.16.0</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      ...
+    </plugins>
+  </build>
+  ...
+</project>
+```
+
 ### For JAXB 3:
 ```xml
 <project ...>
@@ -49,7 +75,7 @@ compiling XML Schemas (as well as WSDL, DTDs, RELAX NG) into Java classes in Mav
       <plugin>
         <groupId>com.evolvedbinary.maven.jvnet</groupId>
         <artifactId>jaxb30-maven-plugin</artifactId>
-        <version>0.15.0</version>
+        <version>0.16.0</version>
         <executions>
           <execution>
             <goals>
@@ -72,6 +98,7 @@ Use: `<artifactId>jaxb2-maven-plugin</artifactId>` instead.
 
 If you need a specific JAXB version, you can explicitly use one of the following variants:
 
+* `com.evolvedbinary.maven.jvnet:jaxb40-maven-plugin` - JAXB 4.0.
 * `com.evolvedbinary.maven.jvnet:jaxb30-maven-plugin` - JAXB 3.0.
 * `com.evolvedbinary.maven.jvnet:jaxb23-maven-plugin` - JAXB 2.3.
 * `com.evolvedbinary.maven.jvnet:jaxb22-maven-plugin` - JAXB 2.2.
