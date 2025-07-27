@@ -15,6 +15,13 @@
     <maven>${maven.version}</maven>
   </prerequisites>
 
+  <scm>
+    <connection>scm:git:https://github.com/evolvedbinary/jvnet-jaxb-maven-plugin.git</connection>
+    <developerConnection>scm:git:https://github.com/evolvedbinary/jvnet-jaxb-maven-plugin.git</developerConnection>
+    <url>https://github.com/evolvedbinary/jvnet-jaxb-maven-plugin</url>
+    <tag>HEAD</tag>
+  </scm>
+
   <dependencies>
     <dependency>
       <groupId>${project.groupId}</groupId>

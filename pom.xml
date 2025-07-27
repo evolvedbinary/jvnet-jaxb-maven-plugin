@@ -22,9 +22,9 @@
   <inceptionYear>2006</inceptionYear>
 
   <scm>
-    <connection>scm:git:git@github.com:evolvedbinary/jvnet-jaxb-maven-plugin.git</connection>
-    <developerConnection>scm:git:git@github.com:evolvedbinary/jvnet-jaxb-maven-plugin.git</developerConnection>
-    <url>http://github.com/evolvedbinary/jvnet-jaxb-maven-plugin</url>
+    <connection>scm:git:https://github.com/evolvedbinary/jvnet-jaxb-maven-plugin.git</connection>
+    <developerConnection>scm:git:https://github.com/evolvedbinary/jvnet-jaxb-maven-plugin.git</developerConnection>
+    <url>https://github.com/evolvedbinary/jvnet-jaxb-maven-plugin</url>
     <tag>HEAD</tag>
   </scm>
 
@@ -147,7 +147,7 @@
     </profile>
 
     <profile>
-      <id>sonatype-oss-release</id>
+      <id>jaxb-maven-plugin-project-release</id>
       <build>
         <plugins>
           <plugin>
@@ -188,21 +188,20 @@
               </execution>
             </executions>
           </plugin>
+          <plugin>
+            <groupId>org.sonatype.central</groupId>
+            <artifactId>central-publishing-maven-plugin</artifactId>
+            <configuration>
+              <publishingServerId>central</publishingServerId>
+              <deploymentName>${project.artifactId}-${project.version}</deploymentName>
+              <failOnBuildFailure>true</failOnBuildFailure>
+              <waitUntil>validated</waitUntil>
+            </configuration>
+          </plugin>
         </plugins>
       </build>
     </profile>
   </profiles>
-
-  <distributionManagement>
-    <snapshotRepository>
-      <id>ossrh</id>
-      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-    </snapshotRepository>
-    <repository>
-      <id>ossrh</id>
-      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-    </repository>
-  </distributionManagement>
 
   <dependencyManagement>
     <dependencies>
@@ -493,8 +492,21 @@
           <artifactId>maven-project-info-reports-plugin</artifactId>
           <version>3.9.0</version>
         </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-release-plugin</artifactId>
+          <version>3.1.1</version>
+        </plugin>
+        <plugin>
+          <groupId>org.sonatype.central</groupId>
+          <artifactId>central-publishing-maven-plugin</artifactId>
+          <version>0.8.0</version>
+          <extensions>true</extensions>
+        </plugin>
       </plugins>
     </pluginManagement>
+
+
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -530,7 +542,17 @@
           </execution>
         </executions>
       </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-release-plugin</artifactId>
+        <configuration>
+          <autoVersionSubmodules>true</autoVersionSubmodules>
+          <tagNameFormat>@{project.version}</tagNameFormat>
+          <releaseProfiles>jaxb-maven-plugin-project-release</releaseProfiles>
+        </configuration>
+      </plugin>
     </plugins>
+
   </build>
 
 </project>
