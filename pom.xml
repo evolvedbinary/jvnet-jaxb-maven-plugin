@@ -67,7 +67,7 @@
 
     <maven.version>3.9.0</maven.version>
 
-    <jaxb21.version>2.1</jaxb21.version>
+    <jaxb21.version>2.3.1</jaxb21.version>
 
     <jaxb22.version>2.2.11</jaxb22.version>
     <jaxb22.xsom.version>20140925</jaxb22.xsom.version>
