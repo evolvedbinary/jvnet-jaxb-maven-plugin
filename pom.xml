@@ -72,7 +72,7 @@
     <jaxb22.version>2.2.11</jaxb22.version>
     <jaxb22.xsom.version>20140925</jaxb22.xsom.version>
 
-    <jaxb23.version>2.3.9</jaxb23.version>
+    <jaxb23.version>4.0.5</jaxb23.version>
     <jaxb23.core.version>2.3.0.1</jaxb23.core.version>
 
     <jaxb30.version>3.0.1</jaxb30.version>
